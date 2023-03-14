@@ -12,7 +12,13 @@ class Playlist:
 
     def adc_mus(self):
         titulo = input("\nNome da música: ")
+        while not titulo.strip():
+            print("\nEntrada inválida. Tente novamente.")
+            titulo = input("\nNome da música: ")
         artista = input("Nome do artista: ")
+        while not artista.strip():
+            print("\nEntrada inválida. Tente novamente.")
+            artista = input("\nNome do artista: ")
         new_node = Musica(titulo, artista)
         if not self.head:
             self.head = new_node
