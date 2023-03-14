@@ -13,12 +13,28 @@ class Playlist:
     def adc_mus(self):
         titulo = input("\nNome da música: ")
         while not titulo.strip():
-            print("\nEntrada inválida. Tente novamente.")
-            titulo = input("\nNome da música: ")
-        artista = input("Nome do artista: ")
+            print("\nEntrada inválida. Tente novamente:")
+            print("\nDeseja continuar ou voltar para o menu? (c/m)")
+            opc1 = input("\nDigite sua opção: ")
+            if opc1 == 'c':
+                titulo = input("\nNome da música: ")
+            elif opc1 == 'm':
+                print("\nVoltando para o menu...")
+                return
+            else:
+                print("\nOpção inválida!")    
+        artista = input("\nNome do artista: ")
         while not artista.strip():
-            print("\nEntrada inválida. Tente novamente.")
-            artista = input("\nNome do artista: ")
+            print("\nEntrada inválida. Tente novamente:")
+            print("\nDeseja continuar ou voltar para o menu? (c/m)")
+            opc2 = input("\nDigite sua opção: ")
+            if opc2 == 'c':
+                artista = input("\nNome do artista: ")
+            elif opc2 == 'm':
+                print("\nVoltando para o menu...")
+                return
+            else:
+                print("\nOpção inválida!")    
         new_node = Musica(titulo, artista)
         if not self.head:
             self.head = new_node
@@ -31,7 +47,29 @@ class Playlist:
 
     def apg_mus(self):
         titulo = input("\nNome da música: ")
-        artista = input("Nome do artista: ")
+        while not titulo.strip():
+            print("\nEntrada vazia. Tente Novamente:")
+            print("\nDeseja continuar ou voltar para o menu? (c/m)")
+            opc3 = input("\nDigite sua opção: ")
+            if opc3 == 'c':
+                titulo = input("\nNome da música: ")
+            elif opc3 == 'm':
+                print("\nVoltando para o menu...")
+                return
+            else:
+                print("\nOpção inválida")    
+        artista = input("\nNome do artista: ")
+        while not artista.strip():
+            print("\nEntrada vazia. Tente Novamente:")
+            print("\nDeseja continuar ou voltar para o menu? (c/m)")
+            opc4 = input("\nDigite sua opção: ")
+            if opc4 == 'c':
+                artista = input("\nNome do artista: ")
+            elif opc4 == 'm':
+                print("\nVoltando para o menu...")
+                return
+            else:
+                print("\nOpção inválida!")    
         current_node = self.head
         while current_node:
             if current_node.titulo == titulo and current_node.artista == artista:
