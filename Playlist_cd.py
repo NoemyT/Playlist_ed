@@ -42,6 +42,15 @@ class Playlist:
             current_node = current_node.next
         print("\nA música não está na playlist!")
 
+    def ver_playlist(self):
+        if not self.head:
+            print("\nA playlist está vazia.")
+            return
+        current_node = self.head
+        while current_node:
+            print(f"\n{current_node.titulo} by {current_node.artista}")
+            current_node = current_node.next    
+
 playlist = Playlist()
 
 while True:
@@ -49,7 +58,8 @@ while True:
     print("                MENU:")
     print("\n1 - Adicionar música")
     print("2 - Deletar música")
-    print("3 - Sair do menu")
+    print("3 - Exibir playlist")
+    print("4 - Sair do menu")
     print("\n=====================================")
     opc = int(input("\nDigite o valor da sua opção: "))
     if opc == 1:
@@ -57,6 +67,8 @@ while True:
     elif opc == 2:
         playlist.apg_mus()
     elif opc == 3:
+        playlist.ver_playlist()    
+    elif opc == 4:
         print("\nAté a próxima!")
         break
     else:
