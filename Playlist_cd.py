@@ -1,3 +1,5 @@
+import random
+
 class Musica:
     def __init__(self, titulo, artista, prev=None, next=None):
         self.titulo = titulo
@@ -93,7 +95,26 @@ class Playlist:
         current_node = self.head
         while current_node:
             print(f"\n{current_node.titulo} by {current_node.artista}")
-            current_node = current_node.next    
+            current_node = current_node.next
+
+    def shuffle(self):
+        if not self.head:
+            print("\nA playlist está vazia!")
+            return
+        musicas = []
+        current_node = self.head
+        while current_node:
+            musicas.append(current_node)
+            current_node = current_node.next
+        random.shuffle(musicas)
+        self.head = musicas[0]
+        self.head.prev = None
+        self.tail = musicas[-1]
+        self.tail.next = None
+        for i in range(len(musicas)-1):
+            musicas[i].next = musicas[i+1]
+            musicas[i+1].prev = musicas[i]
+        print("\nPlaylist embaralhada com sucesso!")                    
 
 playlist = Playlist()
 
@@ -103,7 +124,8 @@ while True:
     print("\n1 - Adicionar música")
     print("2 - Deletar música")
     print("3 - Exibir playlist")
-    print("4 - Sair do menu")
+    print("4 - Embaralhar playlist")
+    print("5 - Sair do menu")
     print("\n=====================================")
     opc = int(input("\nDigite o valor da sua opção: "))
     if opc == 1:
@@ -111,8 +133,10 @@ while True:
     elif opc == 2:
         playlist.apg_mus()
     elif opc == 3:
-        playlist.ver_playlist()    
+        playlist.ver_playlist()
     elif opc == 4:
+        playlist.shuffle()        
+    elif opc == 5:
         print("\nAté a próxima!")
         break
     else:
