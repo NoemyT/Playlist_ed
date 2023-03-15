@@ -93,8 +93,9 @@ class Playlist:
             print("\nA playlist está vazia.")
             return
         current_node = self.head
+        print("\nMúsicas na playlist:")
         while current_node:
-            print(f"\n{current_node.titulo} by {current_node.artista}")
+            print(f"\n{current_node.titulo} - {current_node.artista}")
             current_node = current_node.next
 
     def shuffle(self):
@@ -114,7 +115,27 @@ class Playlist:
         for i in range(len(musicas)-1):
             musicas[i].next = musicas[i+1]
             musicas[i+1].prev = musicas[i]
-        print("\nPlaylist embaralhada com sucesso!")                    
+        print("\nPlaylist embaralhada com sucesso!")
+
+    def busc_mus(self):
+        search_str = input("\nO que está procurando?: ")
+        while not search_str.strip():
+            print("\nEntrada vazia! Tente novamente: ")
+            print("\nDeseja continuar ou voltar para o menu? (c/m)")
+            opc5 = input("\nDigite sua opção: ")
+            if opc5 == 'c':
+                search_str = input("\nO que está procurando?: ")
+            elif opc5 == 'm':
+                print("\nVoltando para o menu...")
+                return
+        print("\nMúsicas na playlist:")
+        current_node = self.head
+        if current_node == None: print("\nA playlist está vazia!")
+        while current_node:
+            if search_str in current_node.titulo or search_str in current_node.artista:
+                print(f"\n{current_node.titulo} - {current_node.artista}")
+            current_node = current_node.next    
+
 
 playlist = Playlist()
 
@@ -125,6 +146,7 @@ while True:
     print("2 - Deletar música")
     print("3 - Exibir playlist")
     print("4 - Embaralhar playlist")
+    print("5 - Buscar na playlist")
     print("5 - Sair do menu")
     print("\n=====================================")
     opc = int(input("\nDigite o valor da sua opção: "))
@@ -135,8 +157,10 @@ while True:
     elif opc == 3:
         playlist.ver_playlist()
     elif opc == 4:
-        playlist.shuffle()        
+        playlist.shuffle()
     elif opc == 5:
+        playlist.busc_mus()            
+    elif opc == 6:
         print("\nAté a próxima!")
         break
     else:
