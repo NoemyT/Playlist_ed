@@ -82,7 +82,7 @@ class Playlist:
                 if current_node.next:
                     current_node.next.prev = current_node.prev
                 else:
-                    self.tail = current_node.next
+                    self.tail = current_node.prev
                 print(f"\n\033[1;31;40m{titulo} - {artista} deletada da playlist!")
                 return
             current_node = current_node.next
