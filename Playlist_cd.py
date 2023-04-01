@@ -136,10 +136,7 @@ class Playlist:
                 print(f"\n\033[1;32;40m{current_node.titulo} - {current_node.artista}")
             current_node = current_node.next    
 
-
-playlist = Playlist()
-
-while True:
+def menu():
     print("\n\033[1;36;40m=====================================")
     print("                MENU:")
     print("\n1 - Adicionar música")
@@ -149,7 +146,21 @@ while True:
     print("5 - Buscar na playlist")
     print("6 - Sair do menu")
     print("\n=====================================")
-    opc = int(input("\n\033[1;37;40mDigite o valor da sua opção: "))
+
+    while True:
+        try:
+            opc = int(input("\n\033[1;37;40mDigite o valor da sua opção: "))
+            if opc in range(1, 7):
+                return opc
+            print("\n\033[1;33;40mOpção inválida. Tente novamente.")
+        except ValueError:
+            print("\n\033[1;33;40mEntrada inválida. Tente novamente.")
+
+if __name__ == "__main__":
+    playlist = Playlist()
+
+while True:
+    opc = menu()
     if opc == 1:
         playlist.adc_mus()
     elif opc == 2:
@@ -163,7 +174,4 @@ while True:
     elif opc == 6:
         print("\n\033[1;34;40mAté a próxima!")
         print("\033[1;37;40m")
-        break
-    else:
-        print("\n\033[1;31;40mOpção Inválida! Tente Novamente.")
-        print("\033[1;37;40m")    
+        break      
